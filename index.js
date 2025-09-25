@@ -12,8 +12,18 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: (request, h) => {
+            const name = request.query.name || 'World';
+            return 'Hello ' + name + '!';
+        }
+    });
 
-            return 'Hello World!';
+    server.route({
+        method: 'POST',
+        path: '/hello',
+        handler: function (request, h) {
+
+            const name = request.payload.name;
+            return 'Hello ' + name;
         }
     });
 
