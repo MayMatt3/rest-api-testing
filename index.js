@@ -1,4 +1,7 @@
 const Hapi = require('@hapi/hapi');
+const Joi = require ('@hapi/joi');
+const path = require('path');
+const fs = require('fs');
 
 const init = async () => {
 
@@ -6,6 +9,12 @@ const init = async () => {
         port: 3000,
         host: 'localhost'
     });
+
+
+    const routes = [];
+    const routesPath = path.join(__dirname, 'route');
+
+
 
     server.route({
         method: 'GET',
