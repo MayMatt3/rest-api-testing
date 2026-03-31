@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const coursesController = require('../controllers/courses');
+const gened = require('../routes/gened');
 
 module.exports = [
     {
