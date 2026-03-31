@@ -6,10 +6,10 @@ class CourseServices {
         const results = await coursesModel.find(c => c.course_code && c.course_code.startsWith(subject));
         return results;
     }
-    async getCoursesByGenEdCategory(categoryName) {
+    async getCoursesByGenEdCategory(category) {
         const allCourses = await coursesModel.find();
         const offeredCodes = new Set(allCourses.map(c => c.course_code));
-        const genedResults = await genedModel.find(g => g.category === categoryName && offeredCodes.has(g.course_code));
+        const genedResults = await genedModel.find(g => g.category === category && offeredCodes.has(g.course_code));
         return genedResults;
     }
 }
