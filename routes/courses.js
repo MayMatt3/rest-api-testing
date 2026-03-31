@@ -1,12 +1,11 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi');
+const coursesController = require('../controllers/courses');
 
 module.exports = [
     {
         method: 'GET',
         path: '/courses/{subject}',
-        handler: (request, h) => {
-            return request.params.subject;
-        }
+        handler: coursesController.getCoursesBySubject
     },
     {
         method: 'GET',
@@ -14,5 +13,5 @@ module.exports = [
         handler: (request, h) => {
             return request.params.number;
         }
-    }
+    }   
 ];
