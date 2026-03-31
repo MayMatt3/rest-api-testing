@@ -4,7 +4,7 @@ const path = require('path');
 class Courses {
     async find(criteria = () => true) {
         const coursesPath = path.join(__dirname, 'courses.json');
-        const data = await fs.readFile(coursesPath, 'utf-8');
+        const data = await fs.readFile(coursesPath, 'utf8');
         const coursesArray = JSON.parse(data);
         return coursesArray.filter(criteria);
     }
