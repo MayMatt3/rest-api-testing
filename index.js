@@ -11,7 +11,7 @@ const init = async () => {
     });
 
     const routes = [];
-    const routesPath = path.join(__dirname, 'route');
+    const routesPath = path.join(__dirname, 'routes');
 
     fs.readdirSync(routesPath).forEach((file) => {
         const fullPath = path.join(routesPath, file);
