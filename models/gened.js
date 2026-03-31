@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
+const coursesController = require('../controllers/courses');
 
 class Gened {
     async find(criteria = () => true) {
