@@ -10,30 +10,16 @@ const init = async () => {
         host: 'localhost'
     });
 
-
     const routes = [];
     const routesPath = path.join(__dirname, 'route');
 
-
-
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-            const name = request.query.name || 'World';
-            return 'Hello ' + name + '!';
-        }
+    fs.readdirSync(routesPath).forEach((file) => {
+        const fullPath = path.join(routesPath, file);
+        const fileRoutes = require(fullPath);
+        routes.push(...fileRoutes)
     });
 
-    server.route({
-        method: 'POST',
-        path: '/hello',
-        handler: function (request, h) {
-
-            const name = request.payload.name;
-            return 'Hello ' + name;
-        }
-    });
+    server.route(routes);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
