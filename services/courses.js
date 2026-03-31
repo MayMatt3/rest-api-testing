@@ -3,13 +3,13 @@ const genedModel = require('../models/gened');
 
 class CourseServices {
     async getCoursesBySubject(subject) {
-        const results = await coursesModel.find(c => c.courseCode.startsWith(subject));
+        const results = await coursesModel.find(c => c.course_code && c.course_code.startsWith(subject));
         return results;
     }
-    async getCoursesByGenEdCategory(category) {
+    async getCoursesByGenEdCategory(categoryName) {
         const allCourses = await coursesModel.find();
-        const offeredCodes = new Set(allCourses.map(c => c.courseCode));
-        const genedResults = await genedModel.find(g => g.categoryCode === category && offeredCodes.has(g.courseCode));
+        const offeredCodes = new Set(allCourses.map(c => c.course_code));
+        const genedResults = await genedModel.find(g => g.category === categoryName && offeredCodes.has(g.course_code));
         return genedResults;
     }
 }
